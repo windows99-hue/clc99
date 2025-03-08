@@ -18,7 +18,7 @@ This will install `clc99` for you.
 
 ## Usage
 
-For detailed usage, please refer to the [help documentation](https://github.com/windows99-hue/clc99/blob/master/help.md).
+For detailed usage, please refer to the [help documentation](https://github.com/windows99-hue/clc99/wiki).
 
 ## In Conclusion
 

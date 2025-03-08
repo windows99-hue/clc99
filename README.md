@@ -18,7 +18,7 @@ pip install clc99
 
 ## 使用
 
-详情请见[帮助文档](https://github.com/windows99-hue/clc99/blob/master/help-chinese.md)
+详情请见[帮助文档](https://github.com/windows99-hue/clc99/wiki)
 
 ## 在最后
 
