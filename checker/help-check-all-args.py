@@ -1,5 +1,5 @@
 #coding:utf-8
-import clc99
+import check as clc99
 clc99.initsystem()
 clc99.print_status('status',full=True,end="")
 clc99.print_good('ok!',full=True,end="")

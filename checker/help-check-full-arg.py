@@ -1,5 +1,5 @@
 #coding:utf-8
-import clc99
+import check as clc99
 clc99.initsystem()
 clc99.print_status('status',full=True)
 clc99.print_good('ok!',full=True)
@@ -8,7 +8,7 @@ clc99.print_warning('warning!',full=True)
 clc99.print_finish('finish',full=True)
 clc99.print_os('os ok!',full=True)
 clc99.print_notrun('This is a comment',full=True)
-clc99.print_e('error!')
+clc99.print_e('error!',full=True)
 clc99.print_fileok('file ok!',full=True)
 clc99.print_filerror('file error!',full=True)
 clc99.print_time()
