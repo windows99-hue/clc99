@@ -29,3 +29,6 @@ Today, I have made up my mind to refactor colorconsole99. I have changed the nam
 ## 2024/12/19
 
 Today, I added the 'end' parameter to clc99 and also refactored the code structure of the library
+
+## 2025/3/8
+Today, I fixed some bugs, and remake a few of functions, add the tips of add functions.
