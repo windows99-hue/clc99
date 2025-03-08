@@ -32,3 +32,4 @@ Today, I added the 'end' parameter to clc99 and also refactored the code structu
 
 ## 2025/3/8
 Today, I fixed some bugs, and remake a few of functions, add the tips of add functions.
+Fixed the bug of arg:full
