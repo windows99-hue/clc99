@@ -27,80 +27,85 @@ def initsystem():
         #print('Windows')
         initsystem = True
 
-def print_status(str,full=False,end="\n"):
+def print_status(*args, full=False, end="\n"):
     if full:
-        print(Fore.BLUE+'[*]',end='')
-        print(str, end=end)
+        print(Fore.BLUE + '[*]', end='')
+        print(*args, end=end)
     else:
-        print(Fore.BLUE+'[*]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(Fore.BLUE + '[*]' + Fore.RESET, end='')
+        print(*args, end=end)
 
-def print_good(str,full=False,end="\n"):
+def print_good(*args,full=False,end="\n"):
     if full:
         print(Fore.BLUE+'[+]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.BLUE+'[+]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_error(str,full=False,end="\n"):
+def print_error(*args,full=False,end="\n"):
     if full:
         print(Fore.RED+'[-]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.RED+'[-]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_warning(str,full=False,end="\n"):
+def print_warning(*args,full=False,end="\n"):
     if full:
         print(Fore.YELLOW+'[!]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.YELLOW+'[!]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_finish(str,full=False,end="\n"):
+def print_finish(*args,full=False,end="\n"):
     if full:
         print(Fore.GREEN+'[√]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.GREEN+'[√]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_os(str,full=False,end="\n"):
+def print_os(*args,full=False,end="\n"):
     if full:
         print(Fore.CYAN+'[$]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.CYAN+'[$]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_notrun(str,full=False,end="\n"):
+def print_notrun(*args,full=False,end="\n"):
     if full:
         print(Fore.MAGENTA+'[#]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.MAGENTA+'[#]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_e(str,end="\n"):
-    print(Fore.RED+'[@]'+str+Fore.RESET)
+def print_e(*args,full=False,end="\n"):
+    if full:
+        print(Fore.RED+'[ERROR]',end='')
+        print(*args, end=end)
+    else:
+        print(Fore.RED+'[ERROR]'+Fore.RESET,end='')
+        print(*args, end=end)
 
-def print_fileok(str,full=False,end="\n"):
+def print_fileok(*args,full=False,end="\n"):
     if full:
         print(Fore.BLUE+'[.]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.BLUE+'[.]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_filerror(str,full=False,end="\n"):
+def print_filerror(*args,full=False,end="\n"):
     if full:
         print(Fore.RED+'[.]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.RED+'[.]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
 def print_time(str='',shijiangeshi="%Y-%m-%d %H:%M:%S",title='front',full=False,end="\n"):
     if full:
@@ -124,45 +129,45 @@ def print_time(str='',shijiangeshi="%Y-%m-%d %H:%M:%S",title='front',full=False,
             print(Fore.CYAN+'[TIME]'+Fore.RESET,end='')
             print(str+time.strftime(shijiangeshi, time.localtime())+str)
 
-def print_music(str,full=False,end="\n"):
+def print_music(*args,full=False,end="\n"):
     if full:
         print(Fore.GREEN+'[playmusic]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.GREEN+'[playmusic]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_video(str,full=False,end="\n"):
+def print_video(*args,full=False,end="\n"):
     if full:
         print(Fore.GREEN+'[playvideo]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.GREEN+'[playvideo]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_ok(str,full=False,end="\n"):
+def print_ok(*args,full=False,end="\n"):
     if full:
-        print(Fore.BLUE+'[OK]',end='')
-        print(str, end=end)
+        print(Fore.GREEN+'[OK]',end='')
+        print(*args, end=end)
     else:
-        print(Fore.BLUE+'[OK]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(Fore.GREEN+'[OK]'+Fore.RESET,end='')
+        print(*args, end=end)
 
-def print_over(str,full=False,end="\n"):
+def print_over(*args,full=False,end="\n"):
     if full:
         print(Fore.WHITE+'[OVER]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.WHITE+'[OVER]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_admin(str,full=False,end="\n"):
+def print_admin(*args,full=False,end="\n"):
     if full:
         print(Fore.CYAN+'[Admin]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.CYAN+'[Admin]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
 def input_str(str,full=False):
     if full:
@@ -172,53 +177,53 @@ def input_str(str,full=False):
         inp = input('[input]'+str)
         return inp
     
-def print_dirok(str,full=False,end="\n"):
+def print_dirok(*args,full=False,end="\n"):
     if full:
         print(Fore.GREEN+'[/]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.GREEN+'[/]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_direrror(str,full=False,end="\n"):
+def print_direrror(*args,full=False,end="\n"):
     if full:
         print(Fore.RED+'[/]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.RED+'[/]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_comok(str,full=False,end="\n"):
+def print_comok(*args,full=False,end="\n"):
     if full:
         print(Fore.GREEN+'[C]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.GREEN+'[C]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_comerror(str,full=False,end="\n"):
+def print_comerror(*args,full=False,end="\n"):
     if full:
         print(Fore.RED+'[C]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.RED+'[C]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_uquestion(str,full=False,end="\n"):
+def print_uquestion(*args,full=False,end="\n"):
     if full:
         print(Fore.YELLOW+'[?]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.YELLOW+'[?]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
-def print_cquestion(str,full=False,end="\n"):
+def print_cquestion(*args,full=False,end="\n"):
     if full:
         print(Fore.RED+'[?]',end='')
-        print(str, end=end)
+        print(*args, end=end)
     else:
         print(Fore.RED+'[?]'+Fore.RESET,end='')
-        print(str, end=end)
+        print(*args, end=end)
 
 def user_color(title,color,full=False):
     #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
@@ -239,9 +244,12 @@ def user_color(title,color,full=False):
     elif color=='WHITE':
         colorinfo=Fore.WHITE
     else:
-        raise Clc99Error('Could not find the color called {color}.')
+        raise Clc99Error(f'Could not find the color called {color}.')
     
     if full:
         return colorinfo+title
     else:
         return colorinfo+title+Fore.RESET
+    
+if __name__ == "__main__":
+    print_good("Welcome to clc99!")
