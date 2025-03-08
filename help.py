@@ -25,7 +25,7 @@ clc99.print_comok('The equipment is normal！')
 clc99.print_comerror('equipment error！')
 clc99.print_uquestion('Do you know Python？')
 clc99.print_cquestion('There is a problem with the procedure！')
-def zidingyicolor(str):
+def customcolor(str):
     user_c = clc99.user_color('[b]','YELLOW')
     print(user_c+str)
-zidingyicolor('Custom symbols')
+customcolor('Custom symbols')

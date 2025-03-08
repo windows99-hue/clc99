@@ -25,7 +25,7 @@ clc99.print_comok('设备正常！')
 clc99.print_comerror('设备错误！')
 clc99.print_uquestion('你知道python吗？')
 clc99.print_cquestion('程序有问题！')
-def zidingyicolor(str):
+def customcolor(str):
     user_c = clc99.user_color('[b]','YELLOW')
     print(user_c+str)
-zidingyicolor('自定义的符号')
+customcolor('自定义的符号')
