@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is a Python library for command-line beautification, capable of achieving command-line displays akin to `Metasploit`. For the sake of brevity in documentation, please refer to the [help documentation](https://github.com/windows99-hue/clc99/blob/master/help.md).
+This is a Python library for command-line beautification, capable of achieving command-line displays akin to `Metasploit`. For the sake of brevity in documentation, please refer to the [help documentation](https://github.com/windows99-hue/clc99/wiki).
 
 # Installation
 
