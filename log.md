@@ -31,5 +31,10 @@ Today, I have made up my mind to refactor colorconsole99. I have changed the nam
 Today, I added the 'end' parameter to clc99 and also refactored the code structure of the library
 
 ## 2025/3/8
+
 Today, I fixed some bugs, and remake a few of functions, add the tips of add functions.
-Fixed the bug of arg:full
+Fixed the bug of `full`
+
+## 2025/3/9
+
+Today, I changed the color of the `print_good` function.
