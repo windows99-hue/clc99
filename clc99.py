@@ -6,6 +6,8 @@ import time
 
 initsystem = False
 
+__version__ = 2.1
+
 #创建主类
 def initsystem():
     """
@@ -48,10 +50,10 @@ def print_good(*args,full=False,end="\n"):
     :type end: str
     """
     if full:
-        print(Fore.BLUE+'[+]',end=' ')
+        print(Fore.CYAN+'[+]',end=' ')
         print(*args, Fore.RESET, end=end)
     else:
-        print(Fore.BLUE+'[+]'+Fore.RESET,end=' ')
+        print(Fore.CYAN+'[+]'+Fore.RESET,end=' ')
         print(*args, end=end)
 
 def print_error(*args,full=False,end="\n"):
@@ -517,4 +519,4 @@ else:
             return colorinfo+title+Fore.RESET
     
 if __name__ == "__main__":
-    print_good("Welcome to clc99!")
+    print_good(f"Welcome to clc99! Version:{__version__}")
