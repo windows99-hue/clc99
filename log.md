@@ -38,3 +38,9 @@ Fixed the bug of `full`
 ## 2025/3/9
 
 Today, I changed the color of the `print_good` function.
+
+
+## 2025/11/12
+
+Today, I added the parameter `sep` and `file` to every function.
+Modified the symbol of `print_finish`

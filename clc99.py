@@ -1,14 +1,15 @@
 #coding:utf-8
-#作者:99
+#Author:99
 from colorama import  init,Fore,Back,Style
 import platform
 import time
+import sys
 
 initsystem = False
 
-__version__ = 2.1
+__version__ = 2.2
 
-#创建主类
+#Main Class
 def initsystem():
     """
     A function to init the system.
@@ -22,7 +23,7 @@ def initsystem():
         #print('Windows')
         initsystem = True
 
-def print_status(*args, full=False, end="\n"):
+def print_status(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [*] hi!
 
@@ -31,15 +32,21 @@ def print_status(*args, full=False, end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.BLUE + '[*]', end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.BLUE + '[*]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.BLUE + '[*]' + Fore.RESET, end=' ')
-        print(*args, end=end)
+        print(Fore.BLUE + '[*]' + Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_good(*args,full=False,end="\n"):
+def print_good(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [+] hi!
 
@@ -48,15 +55,21 @@ def print_good(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.CYAN+'[+]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.CYAN+'[+]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.CYAN+'[+]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.CYAN+'[+]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_error(*args,full=False,end="\n"):
+def print_error(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [-] hi!
 
@@ -65,15 +78,21 @@ def print_error(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.RED+'[-]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[-]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.RED+'[-]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[-]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_warning(*args,full=False,end="\n"):
+def print_warning(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [!] hi!
 
@@ -82,32 +101,44 @@ def print_warning(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.YELLOW+'[!]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.YELLOW+'[!]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.YELLOW+'[!]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.YELLOW+'[!]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_finish(*args,full=False,end="\n"):
+def print_finish(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
-    [√] hi!
+    [FINISH] hi!
 
     :param full: The color fill or not fill the string
     :type full: bool
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[√]',end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[FINISH]', end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[√]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[FINISH]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_os(*args,full=False,end="\n"):
+def print_os(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [$] hi!
 
@@ -116,15 +147,21 @@ def print_os(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.CYAN+'[$]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.CYAN+'[$]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.CYAN+'[$]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.CYAN+'[$]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_notrun(*args,full=False,end="\n"):
+def print_notrun(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [#] hi!
 
@@ -133,15 +170,21 @@ def print_notrun(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.MAGENTA+'[#]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.MAGENTA+'[#]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.MAGENTA+'[#]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.MAGENTA+'[#]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_e(*args,full=False,end="\n"):
+def print_e(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [ERROR] hi!
 
@@ -150,15 +193,21 @@ def print_e(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.RED+'[ERROR]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[ERROR]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.RED+'[ERROR]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[ERROR]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_fileok(*args,full=False,end="\n"):
+def print_fileok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [.] hi!
 
@@ -167,15 +216,21 @@ def print_fileok(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.BLUE+'[.]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.BLUE+'[.]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.BLUE+'[.]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.BLUE+'[.]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_filerror(*args,full=False,end="\n"):
+def print_filerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [.] hi!
 
@@ -184,15 +239,21 @@ def print_filerror(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.RED+'[.]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[.]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.RED+'[.]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[.]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_time(str='',timeformat="%Y-%m-%d %H:%M:%S",title='front',full=False,end="\n"):
+def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [TIME] 2025-03-08 11:11:11
 
@@ -207,29 +268,35 @@ def print_time(str='',timeformat="%Y-%m-%d %H:%M:%S",title='front',full=False,en
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
         if title == 'front':
-            print(Fore.CYAN+'[TIME]',end=' ')
-            print(str+time.strftime(timeformat, time.localtime()) + Fore.RESET)
+            print(Fore.CYAN+'[TIME]', end=' ', file=file)
+            print(str+time.strftime(timeformat, time.localtime()) + Fore.RESET, file=file)
         if title == 'before':
-            print(Fore.CYAN+'[TIME]',end=' ')
-            print(time.strftime(timeformat, time.localtime())+str + Fore.RESET)
+            print(Fore.CYAN+'[TIME]', end=' ', file=file)
+            print(time.strftime(timeformat, time.localtime())+str + Fore.RESET, file=file)
         if title == 'middle':
-            print(Fore.CYAN+'[TIME]',end=' ')
-            print(str+time.strftime(timeformat, time.localtime())+str + Fore.RESET)
+            print(Fore.CYAN+'[TIME]', end=' ', file=file)
+            print(str+time.strftime(timeformat, time.localtime())+str + Fore.RESET, file=file)
     else:
         if title == 'front':
-            print(Fore.CYAN+'[TIME]'+Fore.RESET,end=' ')
-            print(str+time.strftime(timeformat, time.localtime()))
+            print(Fore.CYAN+'[TIME]'+Fore.RESET, end=' ', file=file)
+            print(str+time.strftime(timeformat, time.localtime()), file=file)
         if title == 'before':
-            print(Fore.CYAN+'[TIME]'+Fore.RESET,end=' ')
-            print(time.strftime(timeformat, time.localtime())+str)
+            print(Fore.CYAN+'[TIME]'+Fore.RESET, end=' ', file=file)
+            print(time.strftime(timeformat, time.localtime())+str, file=file)
         if title == 'middle':
-            print(Fore.CYAN+'[TIME]'+Fore.RESET,end=' ')
-            print(str+time.strftime(timeformat, time.localtime())+str)
+            print(Fore.CYAN+'[TIME]'+Fore.RESET, end=' ', file=file)
+            print(str+time.strftime(timeformat, time.localtime())+str, file=file)
 
-def print_music(*args,full=False,end="\n"):
+def print_music(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [playmusic] hi!
 
@@ -238,15 +305,21 @@ def print_music(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[playmusic]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.GREEN+'[playmusic]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[playmusic]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[playmusic]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_video(*args,full=False,end="\n"):
+def print_video(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [playvideo] hi!
 
@@ -255,15 +328,21 @@ def print_video(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[playvideo]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.GREEN+'[playvideo]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[playvideo]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[playvideo]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_ok(*args,full=False,end="\n"):
+def print_ok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [OK] hi!
 
@@ -272,15 +351,21 @@ def print_ok(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[OK]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.GREEN+'[OK]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[OK]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[OK]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_over(*args,full=False,end="\n"):
+def print_over(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [OVER] hi!
 
@@ -289,15 +374,21 @@ def print_over(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.WHITE+'[OVER]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.WHITE+'[OVER]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.WHITE+'[OVER]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.WHITE+'[OVER]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_admin(*args,full=False,end="\n"):
+def print_admin(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [Admin] hi!
 
@@ -306,20 +397,29 @@ def print_admin(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.CYAN+'[Admin]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.CYAN+'[Admin]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.CYAN+'[Admin]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.CYAN+'[Admin]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def input_str(str,full=False):
+def input_str(str, full=False, file=sys.stdout):
     """
     [input] please input your age:
 
     :param full: The color fill or not fill the string
     :type full: bool
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
     """
     if full:
         inp = input('[input]'+str + Fore.RESET)
@@ -327,8 +427,31 @@ def input_str(str,full=False):
     else:
         inp = input('[input]'+str)
         return inp
+
+def print_dirok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+    """
+    [/] hi!
+
+    :param full: The color fill or not fill the string
+    :type full: bool
+
+    :param end: The same as print(end="")
+    :type end: str
     
-def print_dirok(*args,full=False,end="\n"):
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
+    """
+    if full:
+        print(Fore.GREEN+'[/]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
+    else:
+        print(Fore.GREEN+'[/]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
+
+def print_direrror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [/] hi!
 
@@ -337,32 +460,21 @@ def print_dirok(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[/]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[/]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[/]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[/]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_direrror(*args,full=False,end="\n"):
-    """
-    [/] hi!
-
-    :param full: The color fill or not fill the string
-    :type full: bool
-
-    :param end: The same as print(end="")
-    :type end: str
-    """
-    if full:
-        print(Fore.RED+'[/]',end=' ')
-        print(*args, Fore.RESET, end=end)
-    else:
-        print(Fore.RED+'[/]'+Fore.RESET,end=' ')
-        print(*args, end=end)
-
-def print_comok(*args,full=False,end="\n"):
+def print_comok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [C] hi!
 
@@ -371,15 +483,21 @@ def print_comok(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.GREEN+'[C]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.GREEN+'[C]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.GREEN+'[C]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.GREEN+'[C]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_comerror(*args,full=False,end="\n"):
+def print_comerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [C] hi!
 
@@ -388,15 +506,21 @@ def print_comerror(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.RED+'[C]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[C]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.RED+'[C]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[C]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_uquestion(*args,full=False,end="\n"):
+def print_uquestion(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [?] hi!
 
@@ -405,15 +529,21 @@ def print_uquestion(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.YELLOW+'[?]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.YELLOW+'[?]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.YELLOW+'[?]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.YELLOW+'[?]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
-def print_cquestion(*args,full=False,end="\n"):
+def print_cquestion(*args, full=False, end="\n", file=sys.stdout, sep=" "):
     """
     [?] hi!
 
@@ -422,16 +552,22 @@ def print_cquestion(*args,full=False,end="\n"):
 
     :param end: The same as print(end="")
     :type end: str
+    
+    :param file: The output file, default is sys.stdout
+    :type file: file object
+    
+    :param sep: The separator between arguments, default is space
+    :type sep: str
     """
     if full:
-        print(Fore.RED+'[?]',end=' ')
-        print(*args, Fore.RESET, end=end)
+        print(Fore.RED+'[?]', end=' ', file=file)
+        print(*args, Fore.RESET, end=end, file=file, sep=sep)
     else:
-        print(Fore.RED+'[?]'+Fore.RESET,end=' ')
-        print(*args, end=end)
+        print(Fore.RED+'[?]'+Fore.RESET, end=' ', file=file)
+        print(*args, end=end, file=file, sep=sep)
 
 if not platform.python_version() > "3.8":
-    def user_color(title,color,full=False):
+    def user_color(title, color, full=False):
         #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
         """
     [B] Custom Symbol \n
@@ -475,7 +611,7 @@ if not platform.python_version() > "3.8":
             return colorinfo+title+Fore.RESET
 else:
     from typing import Literal
-    def user_color(title: str,color: Literal['RED', 'BLACK', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE'],full: bool=False) -> str:
+    def user_color(title: str, color: Literal['RED', 'BLACK', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE'], full: bool=False) -> str:
         #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
         """
     [B] Custom Symbol \n
@@ -517,6 +653,6 @@ else:
             return colorinfo+title
         else:
             return colorinfo+title+Fore.RESET
-    
+
 if __name__ == "__main__":
     print_good(f"Welcome to clc99! Version:{__version__}")
