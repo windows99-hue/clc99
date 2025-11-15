@@ -9,7 +9,7 @@ from functools import wraps
 
 initsystem = False
 
-__version__ = "loading99"
+__version__ = 2.3
 
 class FAILEDException(Exception):
     # This is a custom exception class for handling the err().

@@ -44,3 +44,7 @@ Today, I changed the color of the `print_good` function.
 
 Today, I added the parameter `sep` and `file` to every function.
 Modified the symbol of `print_finish`
+
+## 2025/11/15
+
+Today, I made the `loading99` which im very like!

@@ -1,5 +1,6 @@
 from clc99 import *
 import time
+from clc99 import loading99, err99
 
 @loading99(text="123...")
 def test():
