@@ -4,12 +4,30 @@ from colorama import  init,Fore,Back,Style
 import platform
 import time
 import sys
+from io import StringIO
+from functools import wraps
 
 initsystem = False
 
-__version__ = 2.2
+__version__ = "loading99"
 
-#Main Class
+class FAILEDException(Exception):
+    # This is a custom exception class for handling the err().
+    pass
+
+def err99(error_text="FAILED",text=""):
+    """The err99 function in loading99 can interrupt function execution and output an error message similar to FAILED in the loading99 decorator.
+    
+    :param text: The error message to be displayed.
+    :type text: str
+    :param error_text:  The prefix for the error message. Default is "FAILED".
+    :type error_text: str
+    """
+    errmessage = FAILEDException(error_text)
+    errmessage.errortext = text #把错误信息存到属性里
+    raise errmessage
+
+#Main Functions
 def initsystem():
     """
     A function to init the system.
@@ -23,7 +41,7 @@ def initsystem():
         #print('Windows')
         initsystem = True
 
-def print_status(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_status(*args, full=False, end="\n", file=None, sep=" "):
     """
     [*] hi!
 
@@ -46,7 +64,7 @@ def print_status(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.BLUE + '[*]' + Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_good(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_good(*args, full=False, end="\n", file=None, sep=" "):
     """
     [+] hi!
 
@@ -69,7 +87,7 @@ def print_good(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.CYAN+'[+]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_error(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_error(*args, full=False, end="\n", file=None, sep=" "):
     """
     [-] hi!
 
@@ -92,7 +110,7 @@ def print_error(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.RED+'[-]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_warning(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_warning(*args, full=False, end="\n", file=None, sep=" "):
     """
     [!] hi!
 
@@ -115,7 +133,7 @@ def print_warning(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.YELLOW+'[!]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_finish(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_finish(*args, full=False, end="\n", file=None, sep=" "):
     """
     [FINISH] hi!
 
@@ -138,7 +156,7 @@ def print_finish(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[FINISH]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_os(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_os(*args, full=False, end="\n", file=None, sep=" "):
     """
     [$] hi!
 
@@ -161,7 +179,7 @@ def print_os(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.CYAN+'[$]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_notrun(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_notrun(*args, full=False, end="\n", file=None, sep=" "):
     """
     [#] hi!
 
@@ -184,7 +202,7 @@ def print_notrun(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.MAGENTA+'[#]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_e(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_e(*args, full=False, end="\n", file=None, sep=" "):
     """
     [ERROR] hi!
 
@@ -207,7 +225,7 @@ def print_e(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.RED+'[ERROR]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_fileok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_fileok(*args, full=False, end="\n", file=None, sep=" "):
     """
     [.] hi!
 
@@ -230,7 +248,7 @@ def print_fileok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.BLUE+'[.]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_filerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_filerror(*args, full=False, end="\n", file=None, sep=" "):
     """
     [.] hi!
 
@@ -253,7 +271,7 @@ def print_filerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.RED+'[.]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False, end="\n", file=sys.stdout, sep=" "):
+def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False, end="\n", file=None, sep=" "):
     """
     [TIME] 2025-03-08 11:11:11
 
@@ -296,7 +314,7 @@ def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False
             print(Fore.CYAN+'[TIME]'+Fore.RESET, end=' ', file=file)
             print(str+time.strftime(timeformat, time.localtime())+str, file=file)
 
-def print_music(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_music(*args, full=False, end="\n", file=None, sep=" "):
     """
     [playmusic] hi!
 
@@ -319,7 +337,7 @@ def print_music(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[playmusic]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_video(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_video(*args, full=False, end="\n", file=None, sep=" "):
     """
     [playvideo] hi!
 
@@ -342,7 +360,7 @@ def print_video(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[playvideo]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_ok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_ok(*args, full=False, end="\n", file=None, sep=" "):
     """
     [OK] hi!
 
@@ -365,7 +383,7 @@ def print_ok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[OK]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_over(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_over(*args, full=False, end="\n", file=None, sep=" "):
     """
     [OVER] hi!
 
@@ -388,7 +406,7 @@ def print_over(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.WHITE+'[OVER]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_admin(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_admin(*args, full=False, end="\n", file=None, sep=" "):
     """
     [Admin] hi!
 
@@ -411,7 +429,7 @@ def print_admin(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.CYAN+'[Admin]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def input_str(str, full=False, file=sys.stdout):
+def input_str(str, full=False, file=None):
     """
     [input] please input your age:
 
@@ -428,7 +446,7 @@ def input_str(str, full=False, file=sys.stdout):
         inp = input('[input]'+str)
         return inp
 
-def print_dirok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_dirok(*args, full=False, end="\n", file=None, sep=" "):
     """
     [/] hi!
 
@@ -451,7 +469,7 @@ def print_dirok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[/]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_direrror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_direrror(*args, full=False, end="\n", file=None, sep=" "):
     """
     [/] hi!
 
@@ -474,7 +492,7 @@ def print_direrror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.RED+'[/]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_comok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_comok(*args, full=False, end="\n", file=None, sep=" "):
     """
     [C] hi!
 
@@ -497,7 +515,7 @@ def print_comok(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.GREEN+'[C]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_comerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_comerror(*args, full=False, end="\n", file=None, sep=" "):
     """
     [C] hi!
 
@@ -520,7 +538,7 @@ def print_comerror(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.RED+'[C]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_uquestion(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_uquestion(*args, full=False, end="\n", file=None, sep=" "):
     """
     [?] hi!
 
@@ -543,7 +561,7 @@ def print_uquestion(*args, full=False, end="\n", file=sys.stdout, sep=" "):
         print(Fore.YELLOW+'[?]'+Fore.RESET, end=' ', file=file)
         print(*args, end=end, file=file, sep=sep)
 
-def print_cquestion(*args, full=False, end="\n", file=sys.stdout, sep=" "):
+def print_cquestion(*args, full=False, end="\n", file=None, sep=" "):
     """
     [?] hi!
 
@@ -653,6 +671,81 @@ else:
             return colorinfo+title
         else:
             return colorinfo+title+Fore.RESET
+        
+def __green(text):
+    return Fore.GREEN + text + Fore.RESET
+
+def __red(text):
+    return Fore.RED + text + Fore.RESET
+
+def __yellow(text):
+    return Fore.YELLOW + text + Fore.RESET
+
+def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=True, output_success_text=True):
+    """
+    A decorator to display loading status and handle output suppression.
+    
+    Args:
+        text (str): Loading display text, uses function name if empty
+        success_text (str): Text to display on successful execution
+        except_text (str): Text to display when exception occurs
+        suppress_output (bool): Whether to suppress function's print output
+        output_success_text (bool): Whether to display success text
+    """
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            nonlocal text
+            if text == "":
+                text = func.__name__
+                print("\""+text+"\" is running......", end="", flush=True)
+            else:
+                print(text, end="", flush=True)
+            
+            if suppress_output:
+                captured_output = StringIO()
+                original_stdout = sys.stdout
+                sys.stdout = captured_output
+                
+                try:
+                    r = func(*args, **kwargs)
+                except FAILEDException as e:
+                    sys.stdout = original_stdout
+                    eprofix = str(e)
+                    emessage = getattr(e, 'errortext', '')
+                    if emessage:
+                        emessage = ": " + emessage
+                    print(__red(eprofix+emessage), flush=True)
+                    return
+                except:
+                    sys.stdout = original_stdout
+                    print(__yellow(except_text), flush=True)
+                    raise
+                finally:
+                    sys.stdout = original_stdout
+            else:
+                print("") #填充换行
+                try:
+                    r = func(*args, **kwargs)
+                except FAILEDException as e:
+                    sys.stdout = original_stdout
+                    eprofix = str(e)
+                    emessage = getattr(e, 'errortext', '')
+                    if emessage:
+                        emessage = ": " + emessage
+                    print(__red(eprofix+emessage), flush=True)
+                    return
+                except:
+                    print(__yellow("EXCEPTION OCCURRED!"), flush=True)
+                    raise
+
+            if output_success_text:
+                print(__green(success_text), flush=True)
+            
+            return r
+        return wrapper
+    return decorator
+
 
 if __name__ == "__main__":
     print_good(f"Welcome to clc99! Version:{__version__}")
