@@ -1,4 +1,5 @@
 <img width="1314" height="336" alt="LOGO" src="https://github.com/user-attachments/assets/757b4ef1-3cd2-47aa-b1e3-cc99692027db" />
+
 # clc99
 
 > After three years, I've finally updated it again....
@@ -6,6 +7,8 @@
 ## Introduction
 
 This is a Python library for command-line beautification, capable of achieving command-line displays akin to `Metasploit`. For the sake of brevity in documentation, please refer to the [help documentation](https://github.com/windows99-hue/clc99/wiki).
+
+<img width="819" height="531" alt="9811a87b26ec11f2cf4c2426a00c8c3a" src="https://github.com/user-attachments/assets/c5b922f7-eff1-4b12-b9be-ee3ff38a8a22" />
 
 # Installation
 
