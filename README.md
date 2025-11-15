@@ -8,6 +8,8 @@
 
 这是一个用于命令行美化的python库，他可以实现像`Metasploit`一样的命令行显示。为了文档的简洁性，请阅读[帮助文档](https://github.com/windows99-hue/clc99/wiki)
 
+<img width="492" height="528" alt="ea7abc32fcd3249c5fd61905011f023f" src="https://github.com/user-attachments/assets/c44afec1-3abb-4296-8fc6-571d9cd16df5" />
+
 # 安装
 
 在命令行下执行
