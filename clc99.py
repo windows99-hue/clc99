@@ -728,7 +728,6 @@ def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=
                 try:
                     r = func(*args, **kwargs)
                 except FAILEDException as e:
-                    sys.stdout = original_stdout
                     eprofix = str(e)
                     emessage = getattr(e, 'errortext', '')
                     if emessage:
