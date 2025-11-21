@@ -695,12 +695,12 @@ def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            nonlocal text
+            display_text = text if text != "" else func.__name__
+            
             if text == "":
-                text = func.__name__
-                print("\""+text+"\" is running......", end="", flush=True)
+                print("\"" + display_text + "\" is running......", end="", flush=True)
             else:
-                print(text, end="", flush=True)
+                print(display_text, end="", flush=True)
             
             if suppress_output:
                 captured_output = StringIO()
@@ -724,7 +724,7 @@ def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=
                 finally:
                     sys.stdout = original_stdout
             else:
-                print("") #填充换行
+                print("") # 填充换行
                 try:
                     r = func(*args, **kwargs)
                 except FAILEDException as e:
