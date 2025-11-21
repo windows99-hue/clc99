@@ -48,3 +48,7 @@ Modified the symbol of `print_finish`
 ## 2025/11/15
 
 Today, I made the `loading99` which im very like!
+
+## 2025/11/21
+
+Today, I fixed a bug that cause `text` arg error when a same function is invoked.
