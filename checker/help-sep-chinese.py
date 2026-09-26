@@ -1,6 +1,8 @@
 #coding:utf-8
 import clc99
 
+print(clc99.__version__)
+
 print("1. 默认分隔符（空格）:")
 clc99.print_status('项目', '进度', '50%')
 
