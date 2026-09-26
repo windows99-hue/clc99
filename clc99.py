@@ -1,13 +1,13 @@
 #coding:utf-8
 #Author:99
-from colorama import  init,Fore,Back,Style
+from colorama import just_fix_windows_console, Fore, Back, Style
 import platform
 import time
 import sys
 from io import StringIO
 from functools import wraps
 
-initsystem = False
+just_fix_windows_console()
 
 __version__ = "2.3.post1"
 
@@ -28,19 +28,6 @@ def err99(error_text="FAILED",text=""):
     raise errmessage
 
 #Main Functions
-def initsystem():
-    """
-    A function to init the system.
-    """
-    v_system = platform.system()
-    if v_system != 'Windows':
-        #print('other')
-        initsystem=True
-    else:
-        init(wrap=True)
-        #print('Windows')
-        initsystem = True
-
 def print_status(*args, full=False, end="\n", file=None, sep=" "):
     """
     [*] hi!

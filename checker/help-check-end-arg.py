@@ -1,6 +1,5 @@
 #coding:utf-8
-import check as clc99
-clc99.initsystem()
+import clc99
 clc99.print_status('status',end="a")
 clc99.print_good('ok!',end="a")
 clc99.print_error('error!',end="a")

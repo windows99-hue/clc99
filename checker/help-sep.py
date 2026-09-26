@@ -1,6 +1,5 @@
 #coding:utf-8
 import clc99
-clc99.initsystem()
 
 print("1. Default separator (space):")
 clc99.print_status('Project', 'Progress', '50%')

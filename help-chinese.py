@@ -1,6 +1,5 @@
 #coding:utf-8
 import clc99
-clc99.initsystem()
 clc99.print_status('123')
 clc99.print_good('good!')
 clc99.print_error('错误!')
