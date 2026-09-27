@@ -546,10 +546,8 @@ def make_printer(symbol, color="cyan"):
 
     return printer
 
-if sys.version_info < (3, 8): #typing.Literal needs python 3.8 or newer
-    def user_color(title, color, full=False):
-        #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-        """
+def user_color(title, color, full=False):
+    """
     [B] Custom Symbol \n
     Usage:\n
     def customcolor(str):
@@ -558,82 +556,17 @@ if sys.version_info < (3, 8): #typing.Literal needs python 3.8 or newer
     customcolor('Custom symbols')
 
     :param title: The symbol you want to add
-    :type full: str
+    :type title: str
 
-    :param color: Which color do you wanna choose, you can choose 'RED', 'BLACK', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE'
-    :type end: str
-
-    :param full: The color fill or not fill the string
-    :type full: bool
-    """
-        if color=='RED':
-            colorinfo=Fore.RED
-        elif color=='BLACK':
-            colorinfo=Fore.BLACK
-        elif color=='GREEN':
-            colorinfo=Fore.GREEN
-        elif color=='YELLOW':
-            colorinfo=Fore.YELLOW
-        elif color=='BLUE':
-            colorinfo=Fore.BLUE
-        elif color=='MAGENTA':
-            colorinfo=Fore.MAGENTA
-        elif color=='CYAN':
-            colorinfo=Fore.CYAN
-        elif color=='WHITE':
-            colorinfo=Fore.WHITE
-        else:
-            raise ValueError(f'Could not find the color called {color}.')
-        
-        if full:
-            return colorinfo+title
-        else:
-            return colorinfo+title+Fore.RESET
-else:
-    from typing import Literal
-    def user_color(title: str, color: Literal['RED', 'BLACK', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE'], full: bool=False) -> str:
-        #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-        """
-    [B] Custom Symbol \n
-    Usage:\n
-    def customcolor(str):
-        user_c = clc99.user_color('[b]','YELLOW')
-        print(user_c+str)\n
-    customcolor('Custom symbols')
-
-    :param title: The symbol you want to add
-    :type full: str
-
-    :param color: Which color do you wanna choose, you can choose 'RED', 'BLACK', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE'
-    :type end: str
+    :param color: Which color do you wanna choose, you can choose 'BLACK', 'RED', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE' and the light ones like 'LIGHTRED'. The case doesn't matter, so 'cyan' and 'CYAN' are both ok.
+    :type color: str
 
     :param full: The color fill or not fill the string
     :type full: bool
     """
-        if color=='RED':
-            colorinfo=Fore.RED
-        elif color=='BLACK':
-            colorinfo=Fore.BLACK
-        elif color=='GREEN':
-            colorinfo=Fore.GREEN
-        elif color=='YELLOW':
-            colorinfo=Fore.YELLOW
-        elif color=='BLUE':
-            colorinfo=Fore.BLUE
-        elif color=='MAGENTA':
-            colorinfo=Fore.MAGENTA
-        elif color=='CYAN':
-            colorinfo=Fore.CYAN
-        elif color=='WHITE':
-            colorinfo=Fore.WHITE
-        else:
-            raise ValueError(f'Could not find the color called {color}.')
-        
-        if full:
-            return colorinfo+title
-        else:
-            return colorinfo+title+Fore.RESET
-        
+    colorinfo = _color_code(color)
+    return colorinfo + title + ("" if full else Fore.RESET)
+
 def __green(text):
     return Fore.GREEN + text + Fore.RESET
 
