@@ -1,6 +1,6 @@
 #coding:utf-8
 #Author:99
-from colorama import just_fix_windows_console, Fore, Back, Style
+from colorama import just_fix_windows_console, Fore
 import time
 from io import StringIO
 from functools import wraps
@@ -362,15 +362,13 @@ def print_admin(*args, full=False, end="\n", file=None, sep=" "):
     """
     _print_message(args, '[Admin]', Fore.CYAN, full, end, file, sep)
 
-def input_str(str, full=False, file=None):
+def input_str(str, full=False):
     """
     [input] please input your age:
 
     :param full: The color fill or not fill the string
     :type full: bool
     
-    :param file: The output file, default is sys.stdout
-    :type file: file object
     """
     if full:
         inp = input('[input]'+str + Fore.RESET)
@@ -633,7 +631,7 @@ def loading99(text="", success_text="OK", except_text="EXCEPTION OCCURRED!", sup
                     emessage = ": " + emessage
                 print(__red(eprofix+emessage), flush=True)
                 return
-            except BaseException:
+            except Exception:
                 print(__yellow(except_text), flush=True)
                 raise
 
