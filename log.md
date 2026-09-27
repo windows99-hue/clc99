@@ -55,6 +55,8 @@ Today, I fixed a bug that cause `text` arg error when a same function is invoked
 
 ## 2026/9/27
 
+Today I removed `initsystem()`. It was only a wrapper of colorama's `init()`, and it is not needed any more: clc99 calls `just_fix_windows_console()` as soon as it is imported. So `initsystem()` is gone in 2.4.0.
+
 Today, I added the `make_printer` function. Now you can make your own printer with a symbol and a color you like, and it works just like `print_status`:
 
 ~~~python
@@ -77,3 +79,10 @@ By the way, `redirect_stdout` does not make `loading99` thread safe by itself, s
 Then I cleaned up `print_time`. The first argument was called `str`, which shadows the python builtin, so now it is `text`. The `title` argument is called `position` now. Both old names still work (`str=` and `title=`), and I did not change the order of the arguments, so every old positional call still works. I also fixed the silent `return`: a wrong position used to print nothing at all and give no error, now it raises `ValueError`.
 
 Note: `print_time` also ignored its own `end` and `sep` arguments (`_print_message` was called without them). I fixed that, so `end=""` finally works, and `sep` is passed on too. But `print_time` prints a single message, so `sep` has nothing to join and changes nothing, I wrote that in its docstring.
+
+Then I packaged 2.4.0 for pypi. Two things had to be fixed in `setup.py` first:
+
+* `install_requires` is `colorama>=0.4.6` now. Without the lower bound, pip keeps an already installed old colorama and clc99 dies on import.
+* `python_requires` is `>=3.7` now, it said `>=3.6` before but that was wrong. `just_fix_windows_console` only exists in colorama 0.4.6, and colorama 0.4.6 dropped python 3.5 and 3.6, so on 3.6 pip installs colorama 0.4.5 and `import clc99` fails with ImportError while pip says everything is fine. The code itself only needs 3.6 (f-strings), so 3.7 is really the floor because of colorama. I checked this on 3.8 and on 3.14, both fine.
+
+And I updated the wiki for all of the changes above, plus the new python requirement.
