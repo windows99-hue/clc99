@@ -220,9 +220,13 @@ def print_filerror(*args, full=False, end="\n", file=None, sep=" "):
     """
     _print_message(args, '[.]', Fore.RED, full, end, file, sep)
 
-def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False, end="\n", file=None, sep=" "):
+def print_time(text='', timeformat="%Y-%m-%d %H:%M:%S", title=None, full=False, end="\n", file=None, sep=" ",
+               position=None, **old_names):
     """
     [TIME] 2025-03-08 11:11:11
+
+    :param text: The text with the time, it was called 'str' before, that old name still works
+    :type text: str
 
     :param full: The color fill or not fill the string
     :type full: bool
@@ -230,8 +234,8 @@ def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False
     :param timeformat: The time format, same as module 'time'
     :type timeformat: str
 
-    :param title: The position of the symbol, you can use front, before, middle
-    :param title: str
+    :param position: The position of the time, you can use 'front', 'before' or 'middle'. It was called 'title' before, both names work.
+    :type position: str
 
     :param end: The same as print(end="")
     :type end: str
@@ -239,18 +243,33 @@ def print_time(str='', timeformat="%Y-%m-%d %H:%M:%S", title='front', full=False
     :param file: The output file, default is sys.stdout
     :type file: file object
     
-    :param sep: The separator between arguments, default is space
+    :param sep: The same as print(sep=""). print_time only prints one message, so it joins nothing and changes nothing.
     :type sep: str
     """
-    if title == 'front':
-        message_factory = lambda: str + time.strftime(timeformat, time.localtime())
-    elif title == 'before':
-        message_factory = lambda: time.strftime(timeformat, time.localtime()) + str
-    elif title == 'middle':
-        message_factory = lambda: str + time.strftime(timeformat, time.localtime()) + str
+    if 'str' in old_names: # the old name of 'text'
+        old_text = old_names.pop('str')
+        if text != '' and text != old_text:
+            raise TypeError("print_time() got both 'text' and the old 'str', please pass only one of them")
+        text = old_text
+    if old_names:
+        raise TypeError(f"print_time() got an unexpected keyword argument '{list(old_names)[0]}', "
+                        "the arguments are: text, timeformat, title, full, end, file, sep, position")
+
+    if position is None: # 'title' is the old name of 'position'
+        position = 'front' if title is None else title
+    elif title is not None and title != position:
+        raise ValueError("'position' and 'title' are the same argument, please pass only one of them")
+
+    if position == 'front':
+        message_factory = lambda: text + time.strftime(timeformat, time.localtime())
+    elif position == 'before':
+        message_factory = lambda: time.strftime(timeformat, time.localtime()) + text
+    elif position == 'middle':
+        message_factory = lambda: text + time.strftime(timeformat, time.localtime()) + text
     else:
-        return
-    _print_message((), '[TIME]', Fore.CYAN, full, file=file,
+        raise ValueError(f"position (title) must be 'front', 'before' or 'middle', not {position!r}")
+
+    _print_message((), '[TIME]', Fore.CYAN, full, end=end, file=file, sep=sep,
                    reset_as_arg=False, message_factory=message_factory)
 
 def print_music(*args, full=False, end="\n", file=None, sep=" "):

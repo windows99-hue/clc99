@@ -73,3 +73,7 @@ That also fixed a small bug: in the non suppress mode the exception message was 
 `import sys` is not used any more, so I removed it too.
 
 By the way, `redirect_stdout` does not make `loading99` thread safe by itself, swapping `sys.stdout` is still global state. It only makes the save/restore correct (exceptions, nesting, no forgotten restore).
+
+Then I cleaned up `print_time`. The first argument was called `str`, which shadows the python builtin, so now it is `text`. The `title` argument is called `position` now. Both old names still work (`str=` and `title=`), and I did not change the order of the arguments, so every old positional call still works. I also fixed the silent `return`: a wrong position used to print nothing at all and give no error, now it raises `ValueError`.
+
+Note: `print_time` also ignored its own `end` and `sep` arguments (`_print_message` was called without them). I fixed that, so `end=""` finally works, and `sep` is passed on too. But `print_time` prints a single message, so `sep` has nothing to join and changes nothing, I wrote that in its docstring.
