@@ -65,3 +65,11 @@ upload("foo.png")
 I also fixed the python version check in `user_color`. It was `not platform.python_version() > "3.8"`, but comparing version strings is wrong: `"3.14.4" > "3.8"` is `False` because it compares `'1'` with `'8'`. So every python newer than 3.9 used the old branch without `typing.Literal`. Now it's `sys.version_info < (3, 8)`.
 
 Then I removed the duplicated color code. `user_color` used to have its own `if color=='RED': ... elif ...` chain, and it was written twice, one copy for python < 3.8 and one copy for python 3.8+. Now it just calls `_color_code()`, the same helper `make_printer` uses, so all the color APIs accept the same names. Two more good things came with it: no more version branch at all, and `user_color` now also understands 'cyan', 'light-red' and a raw `Fore` code. 74 lines gone.
+
+Then I cleaned up `loading99`. It used to do `original_stdout = sys.stdout` / `sys.stdout = captured_output` by hand, and it had two almost identical `try/except` blocks, one for `suppress_output=True` and one for `False`. Now it uses `contextlib.redirect_stdout`, and both modes share a single `try/except`. The `print` in the handlers stays outside the `with`, so the error message is not swallowed by the redirect.
+
+That also fixed a small bug: in the non suppress mode the exception message was hardcoded to `EXCEPTION OCCURRED!`, so the `except_text` parameter only worked when `suppress_output=True`. Now both modes use `except_text`, and the default of `except_text` is `EXCEPTION OCCURRED!`. So the non suppress mode keeps its old text, and the suppress mode now says `EXCEPTION OCCURRED!` instead of `EXCEPT` when you don't pass `except_text`. If you want the short one, pass `except_text="EXCEPT"`.
+
+`import sys` is not used any more, so I removed it too.
+
+By the way, `redirect_stdout` does not make `loading99` thread safe by itself, swapping `sys.stdout` is still global state. It only makes the save/restore correct (exceptions, nesting, no forgotten restore).

@@ -2,9 +2,9 @@
 #Author:99
 from colorama import just_fix_windows_console, Fore, Back, Style
 import time
-import sys
 from io import StringIO
 from functools import wraps
+from contextlib import redirect_stdout, ExitStack
 
 just_fix_windows_console()
 
@@ -576,7 +576,7 @@ def __red(text):
 def __yellow(text):
     return Fore.YELLOW + text + Fore.RESET
 
-def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=True, output_success_text=True):
+def loading99(text="", success_text="OK", except_text="EXCEPTION OCCURRED!", suppress_output=True, output_success_text=True):
     """
     A decorator to display loading status and handle output suppression.
     
@@ -598,40 +598,25 @@ def loading99(text="", success_text="OK", except_text="EXCEPT", suppress_output=
                 print(display_text, end="", flush=True)
             
             if suppress_output:
-                captured_output = StringIO()
-                original_stdout = sys.stdout
-                sys.stdout = captured_output
-                
-                try:
-                    r = func(*args, **kwargs)
-                except FAILEDException as e:
-                    sys.stdout = original_stdout
-                    eprofix = str(e)
-                    emessage = getattr(e, 'errortext', '')
-                    if emessage:
-                        emessage = ": " + emessage
-                    print(__red(eprofix+emessage), flush=True)
-                    return
-                except:
-                    sys.stdout = original_stdout
-                    print(__yellow(except_text), flush=True)
-                    raise
-                finally:
-                    sys.stdout = original_stdout
+                capture = redirect_stdout(StringIO())
             else:
                 print("") # 填充换行
-                try:
+                capture = ExitStack() #什么都不做，只是让两种模式共用下面同一个 try
+
+            try:
+                with capture:
                     r = func(*args, **kwargs)
-                except FAILEDException as e:
-                    eprofix = str(e)
-                    emessage = getattr(e, 'errortext', '')
-                    if emessage:
-                        emessage = ": " + emessage
-                    print(__red(eprofix+emessage), flush=True)
-                    return
-                except:
-                    print(__yellow("EXCEPTION OCCURRED!"), flush=True)
-                    raise
+            except FAILEDException as e:
+                # 已经出了 with，sys.stdout 恢复了，这里的 print 不会被吞掉
+                eprofix = str(e)
+                emessage = getattr(e, 'errortext', '')
+                if emessage:
+                    emessage = ": " + emessage
+                print(__red(eprofix+emessage), flush=True)
+                return
+            except BaseException:
+                print(__yellow(except_text), flush=True)
+                raise
 
             if output_success_text:
                 print(__green(success_text), flush=True)
