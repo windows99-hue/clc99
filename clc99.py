@@ -469,6 +469,84 @@ def print_cquestion(*args, full=False, end="\n", file=None, sep=" "):
     """
     _print_message(args, '[?]', Fore.RED, full, end, file, sep)
 
+_COLOR_CODES = {
+    'BLACK': Fore.BLACK,
+    'RED': Fore.RED,
+    'GREEN': Fore.GREEN,
+    'YELLOW': Fore.YELLOW,
+    'BLUE': Fore.BLUE,
+    'MAGENTA': Fore.MAGENTA,
+    'CYAN': Fore.CYAN,
+    'WHITE': Fore.WHITE,
+    'RESET': Fore.RESET,
+    'LIGHTBLACK': Fore.LIGHTBLACK_EX,
+    'LIGHTRED': Fore.LIGHTRED_EX,
+    'LIGHTGREEN': Fore.LIGHTGREEN_EX,
+    'LIGHTYELLOW': Fore.LIGHTYELLOW_EX,
+    'LIGHTBLUE': Fore.LIGHTBLUE_EX,
+    'LIGHTMAGENTA': Fore.LIGHTMAGENTA_EX,
+    'LIGHTCYAN': Fore.LIGHTCYAN_EX,
+    'LIGHTWHITE': Fore.LIGHTWHITE_EX,
+}
+
+def _color_code(color):
+    """Turn a color name like 'cyan' into the code of colorama.
+
+    :param color: The color name, it doesn't matter that you use 'cyan', 'CYAN' or 'Cyan'
+    :type color: str
+
+    :return: The code of colorama, it can also be a code like Fore.CYAN
+    :rtype: str
+    """
+    if isinstance(color, str):
+        if color in _COLOR_CODES:
+            return _COLOR_CODES[color]
+        if color.startswith("\x1b"): # A code of colorama, like Fore.CYAN
+            return color
+        name = color.strip().upper().replace("_", "").replace("-", "").replace(" ", "")
+        if name in _COLOR_CODES:
+            return _COLOR_CODES[name]
+    raise ValueError(f'Could not find the color called {color}.')
+
+def make_printer(symbol, color="cyan"):
+    """
+    Make a printer with your own symbol and color, then use it just like print_status. \n
+    Usage:\n
+    upload = clc99.make_printer("[UPLOAD]", color="cyan")
+    upload("foo.png")\n
+    [UPLOAD] foo.png
+
+    :param symbol: The symbol of the printer, e.g. "[UPLOAD]"
+    :type symbol: str
+
+    :param color: The color of the symbol, you can choose 'BLACK', 'RED', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE', and the light ones like 'LIGHTRED'. The default is 'cyan'.
+    :type color: str
+
+    :return: A printer function, it has the same args as print_status
+    :rtype: function
+    """
+    colorinfo = _color_code(color)
+
+    def printer(*args, full=False, end="\n", file=None, sep=" "):
+        """
+        [SYMBOL] hi!
+
+        :param full: The color fill or not fill the string
+        :type full: bool
+
+        :param end: The same as print(end="")
+        :type end: str
+
+        :param file: The output file, default is sys.stdout
+        :type file: file object
+
+        :param sep: The separator between arguments, default is space
+        :type sep: str
+        """
+        _print_message(args, symbol, colorinfo, full, end, file, sep)
+
+    return printer
+
 if not platform.python_version() > "3.8":
     def user_color(title, color, full=False):
         #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.

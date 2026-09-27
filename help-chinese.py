@@ -29,3 +29,5 @@ def customcolor(str):
     user_c = clc99.user_color('[b]','YELLOW')
     print(user_c+str)
 customcolor('自定义的符号')
+upload = clc99.make_printer("[UPLOAD]", color="cyan")
+upload("foo.png")

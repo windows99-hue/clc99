@@ -52,3 +52,12 @@ Today, I made the `loading99` which im very like!
 ## 2025/11/21
 
 Today, I fixed a bug that cause `text` arg error when a same function is invoked.
+
+## 2026/9/27
+
+Today, I added the `make_printer` function. Now you can make your own printer with a symbol and a color you like, and it works just like `print_status`:
+
+~~~python
+upload = clc99.make_printer("[UPLOAD]", color="cyan")
+upload("foo.png")
+~~~
