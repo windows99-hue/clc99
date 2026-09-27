@@ -61,3 +61,5 @@ Today, I added the `make_printer` function. Now you can make your own printer wi
 upload = clc99.make_printer("[UPLOAD]", color="cyan")
 upload("foo.png")
 ~~~
+
+I also fixed the python version check in `user_color`. It was `not platform.python_version() > "3.8"`, but comparing version strings is wrong: `"3.14.4" > "3.8"` is `False` because it compares `'1'` with `'8'`. So every python newer than 3.9 used the old branch without `typing.Literal`. Now it's `sys.version_info < (3, 8)`.

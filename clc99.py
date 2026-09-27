@@ -1,7 +1,6 @@
 #coding:utf-8
 #Author:99
 from colorama import just_fix_windows_console, Fore, Back, Style
-import platform
 import time
 import sys
 from io import StringIO
@@ -547,7 +546,7 @@ def make_printer(symbol, color="cyan"):
 
     return printer
 
-if not platform.python_version() > "3.8":
+if sys.version_info < (3, 8): #typing.Literal needs python 3.8 or newer
     def user_color(title, color, full=False):
         #BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
         """
